@@ -206,7 +206,7 @@ CREATOR
 
 .creator h3{
 
-    font-size:clamp(1.rem,3vw,1.25rem);
+    font-size:clamp(1rem,3vw,1.25rem);
 
     margin-bottom:1px;
 
