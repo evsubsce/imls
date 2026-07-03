@@ -5,42 +5,72 @@
 
 console.log("EVSU Interactive Learning System Loaded");
 
-/* =========================================
-   EXPLORE BUTTONS
-========================================= */
+/* ==========================================================
+   LOAD COURSES
+========================================================== */
 
-const exploreButtons = document.querySelectorAll("button");
+async function loadCourses() {
 
-exploreButtons.forEach(button => {
+    try {
 
-    button.addEventListener("click", function () {
+        const response = await fetch("courses.json");
 
-        alert(
-            "This course page is currently under development.\n\nVersion 2.0 will open the selected course."
-        );
+        const data = await response.json();
 
-    });
+        const courseList = document.getElementById("course-list");
 
-});
+        data.courses.forEach(course => {
 
-/* =========================================
-   FUTURE MODULES
-========================================= */
+            const card = document.createElement("div");
 
-// Sidebar Navigation
+            card.className = "course-card";
 
-// Course Routing
+            card.innerHTML = `
 
-// Student Progress
+                <div>
 
-// Theme Switcher
+                    <h3>${course.code}</h3>
 
-// Search
+                    <p>${course.title}</p>
 
-// Quiz Engine
+                    <small>${course.description}</small>
 
-// Random Problem Generator
+                </div>
 
-// Engineering Calculators
+                <button onclick="openCourse('${course.page}')">
 
-// AI Tutor
+                    Explore
+
+                </button>
+
+            `;
+
+            courseList.appendChild(card);
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+/* ==========================================================
+   OPEN COURSE
+========================================================== */
+
+function openCourse(page){
+
+    alert("Course page is not yet available.\n\nFuture destination:\n" + page);
+
+}
+
+/* ==========================================================
+   START APPLICATION
+========================================================== */
+
+loadCourses();
